@@ -78,7 +78,7 @@ const CVWebsite = () => {
                 </div>
               </div>
               <p className="text-lg text-slate-600">
-                Passionate about building scalable systems and exploring AI/ML.
+              Passionate about designing, refining, and deploying high-impact software solutions.
               </p>
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h2 className="font-semibold mb-2">Current Focus</h2>
@@ -102,7 +102,9 @@ const CVWebsite = () => {
                   period: "April 2024 - Currently",
                   language: "Python",
                   responsibilities: [
-                    "Build "
+                    "Developed and deployed chatbots with retrieval-augmented generation (RAG), integrating ChromaDB vector search and web search with baseline APIs to ChatGPT,Llama 3 and Perplexity.",
+                    "Developed software to extract Diamond measurements from CAD (3dm) files and predict the cost of all the diamonds from for the jewelry using regression models for lab-grown diamond price prediction.",
+                    "Engineered geolocation distance calculations between branches and customers, ensuring compliance with RBI guidelines for gold loan approvals",
                   ]
                 },
                 {
@@ -165,13 +167,19 @@ const CVWebsite = () => {
               </div>
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h2 className="text-xl font-bold">Bachelors in Science in Computer Science</h2>
-                <p className="text-slate-600 mb-4">University of Southampton • 2016 - 2019</p>
+                <p className="text-slate-600">University of Southampton, UK • 2016 - 2019</p>
+                <p className="text-slate-600 mb-4">Upper Second Class Honours</p>
                 <div className="space-y-4">
                   <div>
                     <h3 className="font-semibold">Key Courses</h3>
                     <ul className="list-disc ml-4 text-slate-600">
-                      <li>CS 7638 : Robotics: AI Techniques</li>
-                      <li>CS 7646: Machine Learning for Trading</li>
+                      <li>Machine Learning Technology</li>
+                      <li>Computer Vision</li>
+                      <li>Cyber Security</li>
+                      <li>Computational Biology</li>
+                      <li>Advance Databases</li>
+                      <li>Intelligent Systems</li>
+                      <li>Principles of Cyber Security</li>
                     </ul>
                   </div>
                 </div>
@@ -183,16 +191,27 @@ const CVWebsite = () => {
               <div className="grid gap-6">
                 {[
                   {
-                    title: "E-commerce Platform",
-                    description: "Built scalable marketplace system",
-                    tech: ["React", "Node.js", "MongoDB"],
-                    link: "github.com/project1"
+                    title: "",
+                    description: "Developed an AI model to solve an N×N block. Implemented Stack and Queue from scratch for various search algorithms, such as breadth-first search, depth-first search, and A* search.",
+                    tech: ["JAVA"],
+                    // link: "github.com/project1"
                   },
                   {
-                    title: "ML Pipeline",
-                    description: "Automated data processing pipeline",
-                    tech: ["Python", "TensorFlow", "AWS"],
-                    link: "github.com/project2"
+                    title: "AI Puzzle Solver",
+                    description: "Developed an AI model to solve an N×N block. Implemented Stack and Queue from scratch for various search algorithms, such as breadth-first search, depth-first search, and A* search.",
+                    tech: ["JAVA"],
+                    // link: "github.com/project1"
+                  },
+                  {
+                    title: "Hybrid Images",
+                    description: "Created hybrid images using the OpenIMAJ library, which combines two images into a hybrid where different images are visible depending on the viewing distance and how humans process visual input.",
+                    tech: ["JAVA"],
+                    // link: "github.com/project1"
+                  },
+                  {
+                    title: "SQL compiler",
+                    description: "Designed and implemented a domain-specific programming language with the expressive power of conjunctive queries. Developed an intuitive and easy-to-use syntax. Understood the fundamentals of an interpreter, then developed a lexer and a parser.",
+                    tech: ["Haskell"],
                   }
                 ].map((project, index) => (
                   <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
