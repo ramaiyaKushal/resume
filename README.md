@@ -34,3 +34,7 @@ This will:
 Wait a couple of minutes, then visit:
 
 https://ramaiyakushal.github.io/resume
+
+---
+
+All Code is in App.js for the frontend.
