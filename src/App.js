@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+// import profileImage from './profile.jpg'; // Update the path to your image file
 
 // Simulating React Router functionality with a simple state-based router
 const CVWebsite = () => {
@@ -21,7 +22,7 @@ const CVWebsite = () => {
   const HomePage = () => (
     <div className="space-y-6">
       <div className="flex items-center space-x-4">
-        <div className="w-20 h-20 bg-slate-200 rounded-full"></div>
+      {/* <img src={profileImage} alt="Kushal Atul Ramaiya" className="w-20 h-20 rounded-full" /> */}
         <div>
           <h1 className="text-3xl font-bold">Kushal Atul Ramaiya</h1>
           <p className="text-xl text-slate-600">Software Development Engineer</p>
@@ -34,14 +35,20 @@ const CVWebsite = () => {
         <h2 className="font-semibold mb-2">Current Focus</h2>
         <p >
           Master of Science in Computer Science at Georgia Tech, 
-          specializing in Machine Learning.
+          specialization in Interactive Intelligence.
         </p>
-      </div>
-      <div className="bg-blue-50 p-4 rounded-lg">
+        <hr className="my-2" />
+        <h2 className="font-semibold mb-2"></h2>
         <p>
-          Building Generative UI and Data Science at Augmont.
+          Artificial Intelligence / Machine Learning Engineer @ Augmont Enterprise.
         </p>
       </div>
+      {/* <div className="bg-blue-50 p-4 rounded-lg">
+      <h2 className="font-semibold mb-2">Current Job</h2>
+        <p>
+          Artificial Intelligence / Machine Learning Engineer at Augmont.
+        </p>
+      </div> */}
     </div>
   );
 
@@ -198,22 +205,29 @@ const CVWebsite = () => {
       <h1 className="text-3xl font-bold">Contact</h1>
       <div className="bg-white rounded-lg p-6 shadow-sm">
         <div className="space-y-4">
-          <div className="flex items-center space-x-3">
-            <span className="text-xl">📧</span>
-            <a href="mailto:your.email@example.com" className="text-blue-600 hover:underline">
-              your.email@example.com
-            </a>
-          </div>
+        <div className="flex items-center space-x-3">
+        <span className="text-xl">📧</span>
+        <a
+          href="mailto:kramaiya3@gatech.edu"
+          className="text-blue-600 hover:underline"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = 'mailto:kramaiya3@gatech.edu';
+          }}
+        >
+          kramaiya3@gatech.edu
+        </a>
+        </div>
           <div className="flex items-center space-x-3">
             <span className="text-xl">🔗</span>
-            <a href="https://linkedin.com/in/yourprofile" className="text-blue-600 hover:underline">
-              linkedin.com/in/yourprofile
+            <a href="https://in.linkedin.com/in/kushal-ramaiya-402504179" className="text-blue-600 hover:underline">
+              linkedin.com/in/kushalramaiya
             </a>
           </div>
           <div className="flex items-center space-x-3">
             <span className="text-xl">💻</span>
-            <a href="https://github.com/yourusername" className="text-blue-600 hover:underline">
-              github.com/yourusername
+            <a href="https://github.com/ramaiyaKushal" className="text-blue-600 hover:underline">
+              github.com/ramaiyaKushal
             </a>
           </div>
         </div>
@@ -262,7 +276,7 @@ const CVWebsite = () => {
           `}
         >
           <div className="p-6">
-            <h1 className="text-2xl font-bold mb-2">Your Name</h1>
+            <h1 className="text-2xl font-bold mb-2">Kushal Atul Ramaiya</h1>
             <p className="text-slate-400 mb-8">Software Development Engineer</p>
             
             <nav className="space-y-4">
