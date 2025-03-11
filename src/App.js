@@ -73,6 +73,7 @@ const CVWebsite = () => {
             <section id="home" className="space-y-6">
               <div className="flex items-center space-x-4">
                 <div>
+                  <h1 className="text-2xl font-bold mb-2">⚠️WORK IN PROGRESS</h1>
                   <h1 className="text-3xl font-bold">Kushal Atul Ramaiya</h1>
                   <p className="text-xl text-slate-600">Software Development Engineer</p>
                 </div>
@@ -191,10 +192,10 @@ const CVWebsite = () => {
               <div className="grid gap-6">
                 {[
                   {
-                    title: "",
-                    description: "Developed an AI model to solve an N×N block. Implemented Stack and Queue from scratch for various search algorithms, such as breadth-first search, depth-first search, and A* search.",
-                    tech: ["JAVA"],
-                    // link: "github.com/project1"
+                    title: "LLM Fine-Tuning for Data Scientists and Software Engineers - Cohort Based Learning",
+                    description: "Fine tuning LLM using Axolotl,set up instrumentation and evaluation to incrementally improve your model and deploying models.",
+                    tech: ["Python"],
+                    link: "https://maven.com/parlance-labs/fine-tuning"
                   },
                   {
                     title: "AI Puzzle Solver",
@@ -235,19 +236,15 @@ const CVWebsite = () => {
                 {[
                   {
                     category: "Languages",
-                    skills: ["Python", "JavaScript", "Java", "SQL"]
+                    skills: ["Python", "Java", "SQL","C++"]
                   },
                   {
-                    category: "Frontend",
-                    skills: ["React", "Vue.js", "HTML/CSS", "Tailwind"]
+                    category: "Frameworks",
+                    skills: ["Flask", "FastAPI", "JUnit","Jupyter Notebooks"]
                   },
                   {
-                    category: "Backend",
-                    skills: ["Node.js", "Django", "Express", "FastAPI"]
-                  },
-                  {
-                    category: "DevOps",
-                    skills: ["AWS", "Docker", "Kubernetes", "CI/CD"]
+                    category: "Developer Tools",
+                    skills: ["Git", "Docker", "Google Cloud Platform,", "VS Code","Weights & Biases"]
                   }
                 ].map((category, index) => (
                   <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
