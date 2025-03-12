@@ -73,7 +73,7 @@ const CVWebsite = () => {
             <section id="home" className="space-y-6">
               <div className="flex items-center space-x-4">
                 <div>
-                  <h1 className="text-2xl font-bold mb-2">⚠️WORK IN PROGRESS</h1>
+                  {/* <h1 className="text-2xl font-bold mb-2">⚠️WORK IN PROGRESS</h1> */}
                   <h1 className="text-3xl font-bold">Kushal Atul Ramaiya</h1>
                   <p className="text-xl text-slate-600">Software Development Engineer</p>
                 </div>
