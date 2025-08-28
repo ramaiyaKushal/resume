@@ -85,7 +85,7 @@ const CVWebsite = () => {
                 <h2 className="font-semibold mb-2">Current Focus</h2>
                 <p>
                   Master of Science in Computer Science at Georgia Tech,
-                  specialization in Interactive Intelligence.
+                  specialization in Machine Learning.
                 </p>
                 <hr className="my-2" />
                 <p>
@@ -155,13 +155,17 @@ const CVWebsite = () => {
                 <div className="space-y-4">
                   <div>
                     <h3 className="font-semibold">Specialization</h3>
-                    <p className="text-slate-600">Interactive Intelligence</p>
+                    <p className="text-slate-600">Machine Learning</p>
                   </div>
                   <div>
                     <h3 className="font-semibold">Key Courses</h3>
                     <ul className="list-disc ml-4 text-slate-600">
-                      <li>CS 7638 : Robotics: AI Techniques</li>
-                      <li>CS 7646: Machine Learning for Trading</li>
+                      <li><a href='https://omscs.gatech.edu/cs-7638-robotics-ai-techniques' className="text-blue-600 hover:underline">CS 7638 : Robotics: AI Techniques</a></li>
+                      <li><a href='https://omscs.gatech.edu/cs-7646-machine-learning-trading' className="text-blue-600 hover:underline">CS 7646 : Machine Learning for Trading</a></li>
+                      <li><a href='https://oscar.gatech.edu/pls/bprod/bwckctlg.p_disp_course_detail?cat_term_in=202402&subj_code_in=CS&crse_numb_in=6220' className="text-blue-600 hover:underline">CS 6220 : Big Data Systems & Analytics</a></li>
+                      <li><a href='https://mahdi-roozbahani.github.io/CS46417641-fall2025/' className="text-blue-600 hover:underline">CS 7641 : Machine Learning</a></li>
+                      <li><a href='https://omscs.gatech.edu/cs-7632-game-ai' className="text-blue-600 hover:underline">CS 7632 : Game AI</a></li>
+                      <li><a href='https://cocoxu.github.io/CS7650_fall2025/' className="text-blue-600 hover:underline">CS 7650 : Natural Language Processing</a></li>
                     </ul>
                   </div>
                 </div>
@@ -215,6 +219,12 @@ const CVWebsite = () => {
                 {/* Existing projects */}
                 {[
                   {
+                    title: "PID Controller Project",
+                    description: "Implementation and demonstration of a PID (Proportional-Integral-Derivative) controller system with simulation video demonstration.",
+                    tech: ["Control Systems", "Engineering"],
+                    video: "/resume/Videos_RAIT/PID.mov"
+                  },
+                  {
                     title: "LLM Fine-Tuning for Data Scientists and Software Engineers - Cohort Based Learning",
                     description: "Fine tuning LLM using Axolotl,set up instrumentation and evaluation to incrementally improve your model and deploying models.",
                     tech: ["Python"],
@@ -241,6 +251,36 @@ const CVWebsite = () => {
                   <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
                     <h2 className="text-xl font-bold">{project.title}</h2>
                     <p className="text-slate-600 mb-4">{project.description}</p>
+                    
+                    {/* Display video if available */}
+                    {project.video && (
+                      <div className="mb-4">
+                        <video 
+                          controls 
+                          className="w-full max-w-2xl rounded-lg shadow-sm"
+                          style={{ maxHeight: '400px' }}
+                        >
+                          <source src={project.video} type="video/mp4" />
+                          <source src={project.video} type="video/quicktime" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    )}
+                    
+                    {/* Display link if available */}
+                    {project.link && (
+                      <div className="mb-4">
+                        <a 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline"
+                        >
+                          View Project →
+                        </a>
+                      </div>
+                    )}
+                    
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((tech, i) => (
                         <span key={i} className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
