@@ -190,6 +190,29 @@ const CVWebsite = () => {
             <section id="projects" className="space-y-8">
               <h1 className="text-3xl font-bold">Projects</h1>
               <div className="grid gap-6">
+                {/* FSDL Project PDF Link and Viewer */}
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h2 className="text-xl font-bold">FSDL Project</h2>
+                  <p className="text-slate-600 mb-4">View or download the FSDL Project PDF:</p>
+                  <a
+                    href="/resume/FSDL-Project.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline mb-4 block"
+                  >
+                    Open Slides
+                  </a>
+                  <div style={{ marginTop: '1rem', width: '100%', height: '60vh' }}>
+                    <iframe
+                      src="/resume/FSDL-Project.pdf"
+                      title="FSDL Project PDF"
+                      width="100%"
+                      height="100%"
+                      style={{ border: '1px solid #ccc', borderRadius: '8px' }}
+                    />
+                  </div>
+                </div>
+                {/* Existing projects */}
                 {[
                   {
                     title: "LLM Fine-Tuning for Data Scientists and Software Engineers - Cohort Based Learning",

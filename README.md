@@ -1,7 +1,15 @@
+
 ### **Step 1: Make Code Changes**
 
 Modify your React project as needed.
 
+### **Step 2: Check Changes**
+
+Open terminal in root director then
+
+```
+yarn start
+```
 
 ### **Step 2: Commit and Push Changes**
 
@@ -13,7 +21,6 @@ git commit -m "Updated project with new changes"
 git push origin main
 ```
 
-
 ### **Step 3: Redeploy to GitHub Pages**
 
 Run:
@@ -21,7 +28,6 @@ Run:
 ```bash
 yarn deploy
 ```
-
 
 This will:
 
