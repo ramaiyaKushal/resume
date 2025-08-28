@@ -219,6 +219,24 @@ const CVWebsite = () => {
                 {/* Existing projects */}
                 {[
                   {
+                    title: "Hopscotch Kalman Filter",
+                    description: (
+                      <>
+                        <strong>Project:</strong> Kalman Filter for Asteroid Navigation
+                        <br />
+                        In this project, I implemented a navigation system for a spaceship using a Kalman filter to estimate asteroid positions and plan safe jumps through a cosmic field.
+                        <br /><br />
+                        <strong>Problem:</strong> The spaceship could only jump within a limited radius and relied on noisy sensor measurements of asteroid locations. Invalid moves occurred if the ship tried to jump outside its range or beyond the field boundaries.
+                        <br /><br />
+                        <strong>Approach:</strong> Built a Kalman filter to predict asteroid trajectories from noisy observations. Designed a traversal algorithm to choose valid asteroids within range and navigate toward the home base.
+                        <br /><br />
+                        <strong>Outcome:</strong> The algorithm successfully guided the spaceship across moving asteroids, updating its position with true states after each jump while relying only on noisy observations for planning.
+                      </>
+                    ),
+                    tech: ["Machine Learning", "Kalman Filter"],
+                    video: "/resume/Videos_RAIT/Hopscotch Kalman Filter.mov"
+                  },
+                  {
                     title: "PID Controller Project",
                     description: "Implementation and demonstration of a PID (Proportional-Integral-Derivative) controller system with simulation video demonstration.",
                     tech: ["Control Systems", "Engineering"],
