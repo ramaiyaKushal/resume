@@ -296,28 +296,47 @@ const CVWebsite = () => {
                     video: "/resume/Videos_RAIT/PID.mov"
                   },
                   {
+                    title: "Stock Market Forecasting with CNN and News Sentiment Analysis",
+                    description: (
+                      <>
+                        <strong>Project:</strong> Stock Market Forecasting with CNN and News Sentiment Analysis 
+                        <br /><br />
+                        <strong>Overview:</strong> Developed and tuned multiple Convolutional Neural Network (CNN) architectures in Keras to predict Apple (AAPL) stock prices using historical indicators and news sentiment data.
+                        <br /><br />
+                        <strong>Key Achievements:</strong>
+                        <br />
+                        • Integrated sentiment scores from financial news (Intrino API + VADER NLP) with stock trading features (volume, open, high, low, change in value) for multivariate time-series forecasting.
+                        <br />
+                        • Optimized hyperparameters (filters, kernel size, dense units) and trained using Adam optimizer with RMSE as the evaluation metric, achieving ~2 RMSE (≈3% error).
+                        <br />
+                        • Demonstrated CNN's ability to capture complex temporal patterns, highlighting potential for broader applications in financial forecasting and multivariate time-series prediction.
+                      </>
+                    ),
+                    tech: ["Python", "Keras", "CNN", "NLP", "Time Series"],
+                  },
+                  {
                     title: "LLM Fine-Tuning for Data Scientists and Software Engineers - Cohort Based Learning",
                     description: "Fine tuning LLM using Axolotl,set up instrumentation and evaluation to incrementally improve your model and deploying models.",
                     tech: ["Python"],
                     link: "https://maven.com/parlance-labs/fine-tuning"
                   },
-                  {
-                    title: "AI Puzzle Solver",
-                    description: "Developed an AI model to solve an N×N block. Implemented Stack and Queue from scratch for various search algorithms, such as breadth-first search, depth-first search, and A* search.",
-                    tech: ["JAVA"],
-                    // link: "github.com/project1"
-                  },
-                  {
-                    title: "Hybrid Images",
-                    description: "Created hybrid images using the OpenIMAJ library, which combines two images into a hybrid where different images are visible depending on the viewing distance and how humans process visual input.",
-                    tech: ["JAVA"],
-                    // link: "github.com/project1"
-                  },
-                  {
-                    title: "SQL compiler",
-                    description: "Designed and implemented a domain-specific programming language with the expressive power of conjunctive queries. Developed an intuitive and easy-to-use syntax. Understood the fundamentals of an interpreter, then developed a lexer and a parser.",
-                    tech: ["Haskell"],
-                  }
+                  // {
+                  //   title: "AI Puzzle Solver",
+                  //   description: "Developed an AI model to solve an N×N block. Implemented Stack and Queue from scratch for various search algorithms, such as breadth-first search, depth-first search, and A* search.",
+                  //   tech: ["JAVA"],
+                  //   // link: "github.com/project1"
+                  // },
+                  // {
+                  //   title: "Hybrid Images",
+                  //   description: "Created hybrid images using the OpenIMAJ library, which combines two images into a hybrid where different images are visible depending on the viewing distance and how humans process visual input.",
+                  //   tech: ["JAVA"],
+                  //   // link: "github.com/project1"
+                  // },
+                  // {
+                  //   title: "SQL compiler",
+                  //   description: "Designed and implemented a domain-specific programming language with the expressive power of conjunctive queries. Developed an intuitive and easy-to-use syntax. Understood the fundamentals of an interpreter, then developed a lexer and a parser.",
+                  //   tech: ["Haskell"],
+                  // }
                 ].map((project, index) => (
                   <div key={index} id={project.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')} className="bg-white rounded-lg p-6 shadow-sm">
                     <h2 className="text-xl font-bold">{project.title}</h2>
