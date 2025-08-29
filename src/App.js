@@ -196,8 +196,8 @@ const CVWebsite = () => {
               <div className="grid gap-6">
                 {/* FSDL Project PDF Link and Viewer */}
                 <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h2 className="text-xl font-bold">FSDL Project</h2>
-                  <p className="text-slate-600 mb-4">View or download the FSDL Project PDF:</p>
+                  <h2 className="text-xl font-bold">Full Stack Deep Learning Project</h2>
+                  <p className="text-slate-600 mb-4">View or download the Full Stack Deep Learning Project PDF:</p>
                   <a
                     href="/resume/FSDL-Project.pdf"
                     target="_blank"
