@@ -217,7 +217,60 @@ const CVWebsite = () => {
                   </div>
                 </div>
                 {/* Existing projects */}
-                {[
+                {[{
+                    title: "SLAM Simulation",
+                    description: (
+                      <>
+                      <strong>Project:</strong> SLAM and Path Planning for Drone Navigation  
+                      <br />
+                      In this project, I developed a system for a drone to autonomously map a jungle environment filled with unknown obstacles and navigate to extract a hidden treasure.  
+                      <br /><br />
+                      <strong>Problem:</strong> The drone entered a dense jungle with no prior knowledge of tree locations and had to rely on noisy sensor measurements. It needed to localize itself, map obstacles, and reach the treasure while avoiding collisions.  
+                      <br /><br />
+                      <strong>Approach:</strong> Implemented a SLAM algorithm to estimate both drone and tree positions from noisy distance and bearing measurements. Designed a path-planning strategy that used SLAM outputs to generate safe movement commands within turning and distance constraints, checking potential collisions with line–circle intersection tests.  
+                      <br /><br />
+                      <strong>Outcome:</strong> The system achieved accurate localization within 0.25m, successfully mapped obstacles, and navigated the drone to the treasure without collisions, completing the mission efficiently.  
+                    </>
+                    ),
+                    tech: ["SLAM"],
+                    video: "/resume/Videos_RAIT/SLAM Video.mov"
+                  },
+                  {
+                    title: "Warehouse Search Planning",
+                    description: (
+                      <>
+                      <strong>Project:</strong> Warehouse Robot Path Planning with Deterministic and Stochastic Policies  
+                      <br />
+                      In this project, I built algorithms for a warehouse robot to pick up and deliver boxes efficiently under different conditions, including deterministic movement, uneven floor costs, and stochastic motion uncertainty.  
+                      <br /><br />
+                      <strong>Problem:</strong> The robot had to collect and deliver boxes in the correct order within a grid-based warehouse, navigating around walls and minimizing total delivery costs. Challenges included limited cell access in the deterministic case, additional floor costs in uneven terrains, and uncertain robot movements due to stochastic effects.  
+                      <br /><br />
+                      <strong>Approach:</strong> Designed efficient search-based algorithms to generate delivery plans under strict viewing constraints. Extended the solution with cost-aware pathfinding (similar to Dijkstra/A*) to handle varying floor costs. For stochastic environments, developed optimal policies that account for motion uncertainty using probability distributions, ensuring reliable pickup and delivery.  
+                      <br /><br />
+                      <strong>Outcome:</strong> The system produced near-optimal delivery plans with minimal warehouse cell access, adapted to floor cost variations for reduced overall cost, and successfully generated robust stochastic policies that enabled the robot to complete deliveries despite uncertainty.  
+                    </>
+                    ),
+                    tech: ["Search Algorithm", "A Star Search"],
+                    video: "/resume/Videos_RAIT/Warehouse Astar Search.mov"
+                  },
+                  {
+                    title: "Solar System Particle Filter",
+                    description: (
+                      <>
+                      <strong>Project:</strong> Particle Filter for Satellite Localization  
+                      <br />
+                      In this project, I implemented a particle filter to localize a satellite in its home solar system using noisy gravimetric and illumination sensor data, enabling accurate positioning and communication.  
+                      <br /><br />
+                      <strong>Problem:</strong> The satellite warped back into orbit with unknown position and orientation, limited resources, and only noisy gravitational/illumination measurements available. It needed to determine its location quickly and efficiently to survive and send rescue signals.  
+                      <br /><br />
+                      <strong>Approach:</strong> Developed a particle filter that initialized candidate satellite positions, updated their weights based on noisy sensor data, resampled iteratively, and modeled orbital motion with Gaussian noise. Combined localization with planetary phase-angle calculations to determine the correct transmission direction.  
+                      <br /><br />
+                      <strong>Outcome:</strong> The filter localized the satellite within 0.01 AU accuracy, operated under strict CPU time limits, and successfully enabled reliable SOS message transmission to the home planet.  
+                    </>
+                    ),
+                    tech: ["Machine Learning", "Kalman Filter"],
+                    video: "/resume/Videos_RAIT/Particle Filter.mov"
+                  },
                   {
                     title: "Hopscotch Kalman Filter",
                     description: (
