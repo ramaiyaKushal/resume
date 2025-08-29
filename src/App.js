@@ -103,9 +103,9 @@ const CVWebsite = () => {
                   period: "April 2024 - Currently",
                   language: "Python",
                   responsibilities: [
-                    "Developed and deployed chatbots with retrieval-augmented generation (RAG), integrating ChromaDB vector search and web search with baseline APIs to ChatGPT,Llama 3 and Perplexity.",
-                    "Developed software to extract Diamond measurements from CAD (3dm) files and predict the cost of all the diamonds from for the jewelry using regression models for lab-grown diamond price prediction.",
-                    "Engineered geolocation distance calculations between branches and customers, ensuring compliance with RBI guidelines for gold loan approvals",
+                    "Designed and scaled enterprise AI/ML platforms leveraging LLMs, Generative AI, and modern MLOps for end-to-end business solutions.",
+                    "Built RAG pipelines with LangChain, ChromaDB, FAISS; integrated MLflow, Langfuse, and Open WebUI for orchestration, monitoring, and deployment on AWS",
+                    "Developed multi-LLM conversational AI (GPT-4o, Claude 3, Gemini, Mistral, LLaMA 3) via OpenRouter, providing internal teams with online access and OpenAI-compatible APIs for RAG-powered code generation."
                   ]
                 },
                 {
