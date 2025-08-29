@@ -319,7 +319,7 @@ const CVWebsite = () => {
                     tech: ["Haskell"],
                   }
                 ].map((project, index) => (
-                  <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
+                  <div key={index} id={project.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')} className="bg-white rounded-lg p-6 shadow-sm">
                     <h2 className="text-xl font-bold">{project.title}</h2>
                     <p className="text-slate-600 mb-4">{project.description}</p>
                     
