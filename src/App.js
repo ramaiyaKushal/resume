@@ -208,6 +208,16 @@ const CVWebsite = () => {
                   </a>
                   <div style={{ marginTop: '1rem', width: '100%', height: '60vh' }}>
                     <iframe
+                      src="https://www.youtube.com/embed/mXEr2pbY0sE?list=PL1T8fO7ArWle-HwX6SkoQ3j_ol19P7tGT"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{ border: '1px solid #ccc', borderRadius: '8px', width: '100%', height: '100%' }}
+                    />
+                  </div>
+                  <div style={{ marginTop: '1rem', width: '100%', height: '60vh' }}>
+                    <iframe
                       src="/resume/FSDL-Project.pdf"
                       title="FSDL Project PDF"
                       width="100%"
@@ -215,6 +225,7 @@ const CVWebsite = () => {
                       style={{ border: '1px solid #ccc', borderRadius: '8px' }}
                     />
                   </div>
+                  
                 </div>
                 {/* Existing projects */}
                 {[{
