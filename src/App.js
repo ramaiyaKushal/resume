@@ -194,6 +194,95 @@ const CVWebsite = () => {
             <section id="projects" className="space-y-8">
               <h1 className="text-3xl font-bold">Projects</h1>
               <div className="grid gap-6">
+                {/* Named Entity Recognition Project */}
+                {[{
+                    title: "Named Entity Recognition (NER) — BiLSTM-CNN pyTorch",
+                    description: (
+                      <>
+                        <strong>Project:</strong> Named Entity Recognition using BiLSTM-CNN with PyTorch
+                        <br />
+                        <br />
+                        <strong>Overview:</strong> Implemented a robust NER system that extracts named entities (people, organizations, locations, etc.) from raw text using a modern sequence-labeling pipeline. The model combines three proven components: pretrained GloVe word embeddings, character-level CNNs to capture morphological cues, and a bidirectional LSTM to model contextual word sequences The system is trained and evaluated on the CoNLL-2003 English NER dataset.
+                        <br />
+                        <br />
+                        <strong>Highlights:</strong>
+                        <br />
+                        • <strong>Architecture:</strong> Character CNNs + BiLSTM 
+                        <br />
+                        • <strong>Embeddings:</strong> GloVe-based word vectors for better lexical generalization
+                        <br />
+                        • <strong>Data:</strong> CoNLL-2003 (BIO tags); code prepares padding, batching, and character inputs
+                        <br />
+                        • <strong>Framework:</strong> PyTorch training scripts and in a Jupyter notebook
+                        <br />
+                        • <strong>Artifacts:</strong> Runnable notebook, saved model weights, and prediction files for evaluation
+                        <br />
+                        <br />
+                        <strong>Results:</strong> The pipeline reproduces strong baselines with typical dev/test F1 scores of ~0.90 dev and ~0.85 test for CNN+BiLSTM when fully trained.
+                      </>
+                    ),
+                    tech: ["Python", "PyTorch", "NLP", "BiLSTM", "CNN", "CRF", "GloVe", "Named Entity Recognition"],
+                    command: `curl -s -X POST \\
+  "https://ramaiyakushal-ner-app--ner-model-api-predict-web.modal.run" \\
+  -H "Content-Type: application/json" \\
+  -d '{"text": "Welcome to America"}' \\
+  | python3 -m json.tool`
+                  }
+                ].map((project, index) => (
+                  <div key={index} id={project.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')} className="bg-white rounded-lg p-6 shadow-sm">
+                    <h2 className="text-xl font-bold">{project.title}</h2>
+                    <p className="text-slate-600 mb-4">{project.description}</p>
+                    
+                    {/* Display video if available */}
+                    {project.video && (
+                      <div className="mb-4">
+                        <video 
+                          controls 
+                          className="w-full max-w-2xl rounded-lg shadow-sm"
+                          style={{ maxHeight: '400px' }}
+                        >
+                          <source src={project.video} type="video/mp4" />
+                          <source src={project.video} type="video/quicktime" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
+                    )}
+
+                    {/* Display command / example API call if available */}
+                    {project.command && (
+                      <div className="mb-4">
+                        <h3 className="text-sm font-semibold text-slate-700 mb-2">Try it out: Replace "Welcome to America" with your text</h3>
+                        <pre className="bg-slate-900 text-slate-100 p-4 rounded-lg text-sm overflow-x-auto max-w-full">
+                          <code className="break-all whitespace-pre-wrap">{project.command}</code>
+                        </pre>
+                        <p className="text-xs text-slate-500 mt-2">Copy and paste this command in your terminal to test the API</p>
+                      </div>
+                    )}
+                    
+                    {/* Display link if available */}
+                    {project.link && (
+                      <div className="mb-4">
+                        <a 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline"
+                        >
+                          View Project →
+                        </a>
+                      </div>
+                    )}
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, i) => (
+                        <span key={i} className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+                
                 {/* FSDL Project PDF Link and Viewer */}
                 <div className="bg-white rounded-lg p-6 shadow-sm">
                   <h2 className="text-xl font-bold">Full Stack Deep Learning Project</h2>
@@ -225,10 +314,11 @@ const CVWebsite = () => {
                       style={{ border: '1px solid #ccc', borderRadius: '8px' }}
                     />
                   </div>
-                  
                 </div>
-                {/* Existing projects */}
-                {[{
+                
+                {/* Other projects */}
+                {[
+{
                     title: "SLAM Simulation",
                     description: (
                       <>
@@ -365,6 +455,17 @@ const CVWebsite = () => {
                           <source src={project.video} type="video/quicktime" />
                           Your browser does not support the video tag.
                         </video>
+                      </div>
+                    )}
+
+                    {/* Display command / example API call if available */}
+                    {project.command && (
+                      <div className="mb-4">
+                        <h3 className="text-sm font-semibold text-slate-700 mb-2">Try it out:</h3>
+                        <pre className="bg-slate-900 text-slate-100 p-4 rounded-lg text-sm overflow-x-auto max-w-full">
+                          <code className="break-all whitespace-pre-wrap">{project.command}</code>
+                        </pre>
+                        <p className="text-xs text-slate-500 mt-2">Copy and paste this command in your terminal to test the API</p>
                       </div>
                     )}
                     
