@@ -87,10 +87,6 @@ const CVWebsite = () => {
                   Master of Science in Computer Science at Georgia Tech,
                   specialization in Machine Learning.
                 </p>
-                <hr className="my-2" />
-                <p>
-                  Artificial Intelligence / Machine Learning Engineer @ Augmont Enterprise.
-                </p>
               </div>
             </section>
 
@@ -100,7 +96,7 @@ const CVWebsite = () => {
                 {
                   title: "Machine Learning Engineer",
                   company: "Augmont Enterprise",
-                  period: "April 2024 - Currently",
+                  period: "April 2024 - Aug 2025",
                   language: "Python",
                   responsibilities: [
                     "Designed and scaled enterprise AI/ML platforms leveraging LLMs, Generative AI, and modern MLOps for end-to-end business solutions.",
