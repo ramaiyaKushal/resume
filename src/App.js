@@ -3,7 +3,11 @@ import { Menu, X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { formatSectionLabel, parseMarkdown } from './utils/markdown';
+import {
+  formatSectionLabel,
+  parseMarkdown,
+  fetchMarkdownAsset,
+} from './utils/markdown';
 
 const RAW_SECTION_CONFIG = [
   {
@@ -234,19 +238,11 @@ const CVWebsite = () => {
       }
 
       Promise.all(
-        sources.map((sourcePath) =>
-          fetch(`${process.env.PUBLIC_URL}/${sourcePath}`)
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(`Failed to load ${sourcePath}`);
-              }
-              return response.text();
-            })
-            .then((text) => {
-              const { metadata, body } = parseMarkdown(text);
-              return { metadata, body, source: sourcePath };
-            })
-        )
+        sources.map(async (sourcePath) => {
+          const { text } = await fetchMarkdownAsset(sourcePath);
+          const { metadata, body } = parseMarkdown(text);
+          return { metadata, body, source: sourcePath };
+        })
       )
         .then((entries) => {
           if (!isMounted) {
@@ -263,12 +259,16 @@ const CVWebsite = () => {
             },
           }));
         })
-        .catch(() => {
+        .catch((error) => {
           if (!isMounted) {
             return;
           }
 
           const label = section.label || formatSectionLabel(section.id);
+          if (process.env.NODE_ENV !== 'production') {
+            // eslint-disable-next-line no-console
+            console.error(`Failed to load content for ${label}:`, error);
+          }
           setSectionsState((prev) => ({
             ...prev,
             [section.id]: {

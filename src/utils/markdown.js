@@ -51,3 +51,74 @@ export const formatSectionLabel = (id) =>
     .filter(Boolean)
     .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
     .join(' ');
+
+const normalizePath = (path) => path.replace(/^\/+/, '');
+
+const stripTrailingSlash = (value) => value.replace(/\/+$/, '');
+
+const ensureLeadingSlash = (value) =>
+  value.startsWith('/') ? value : `/${value}`;
+
+export const buildAssetCandidates = (relativePath) => {
+  const path = normalizePath(relativePath);
+  const publicUrl = process.env.PUBLIC_URL || '';
+  const candidates = new Set();
+
+  if (publicUrl) {
+    const trimmedPublicUrl = stripTrailingSlash(publicUrl);
+    candidates.add(`${trimmedPublicUrl}/${path}`);
+
+    if (typeof window !== 'undefined' && !/^https?:\/\//i.test(trimmedPublicUrl)) {
+      const prefix = ensureLeadingSlash(trimmedPublicUrl);
+      candidates.add(`${window.location.origin}${prefix}/${path}`);
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    try {
+      candidates.add(new URL(path, window.location.href).toString());
+    } catch (error) {
+      // ignore malformed URL attempts
+    }
+
+    candidates.add(`${window.location.origin}/${path}`);
+
+    const firstSegment = window.location.pathname.split('/').filter(Boolean)[0];
+    if (firstSegment) {
+      candidates.add(`${window.location.origin}/${firstSegment}/${path}`);
+    }
+  }
+
+  candidates.add(`/${path}`);
+  candidates.add(path);
+
+  const uniqueCandidates = Array.from(candidates).map((candidate) =>
+    candidate.replace(/([^:]\/)\/+/g, '$1')
+  );
+
+  return uniqueCandidates;
+};
+
+export const fetchMarkdownAsset = async (relativePath) => {
+  const candidates = buildAssetCandidates(relativePath);
+  let lastError = null;
+
+  for (const candidate of candidates) {
+    try {
+      const response = await fetch(candidate);
+      if (!response.ok) {
+        lastError = new Error(
+          `Request for ${candidate} failed with status ${response.status}`
+        );
+        continue;
+      }
+
+      const text = await response.text();
+      return { text, url: candidate };
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error(`Unable to load asset ${relativePath}`);
+};
