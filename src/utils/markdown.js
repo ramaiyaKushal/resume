@@ -99,8 +99,15 @@ export const buildAssetCandidates = (relativePath) => {
   return uniqueCandidates;
 };
 
-export const fetchMarkdownAsset = async (relativePath) => {
-  const candidates = buildAssetCandidates(relativePath);
+// Cache for the content.json file
+let contentCache = null;
+
+const loadContentJson = async () => {
+  if (contentCache !== null) {
+    return contentCache;
+  }
+
+  const candidates = buildAssetCandidates('content.json');
   let lastError = null;
 
   for (const candidate of candidates) {
@@ -113,12 +120,49 @@ export const fetchMarkdownAsset = async (relativePath) => {
         continue;
       }
 
-      const text = await response.text();
-      return { text, url: candidate };
+      contentCache = await response.json();
+      return contentCache;
     } catch (error) {
       lastError = error;
     }
   }
 
-  throw lastError || new Error(`Unable to load asset ${relativePath}`);
+  throw lastError || new Error('Unable to load content.json');
+};
+
+export const fetchMarkdownAsset = async (relativePath) => {
+  try {
+    // Try to load from content.json first
+    const contentJson = await loadContentJson();
+    const normalizedPath = normalizePath(relativePath);
+    
+    if (contentJson[normalizedPath]) {
+      return { text: contentJson[normalizedPath], url: normalizedPath };
+    }
+
+    // Fallback to direct fetch if not in JSON (for development)
+    const candidates = buildAssetCandidates(relativePath);
+    let lastError = null;
+
+    for (const candidate of candidates) {
+      try {
+        const response = await fetch(candidate);
+        if (!response.ok) {
+          lastError = new Error(
+            `Request for ${candidate} failed with status ${response.status}`
+          );
+          continue;
+        }
+
+        const text = await response.text();
+        return { text, url: candidate };
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    throw lastError || new Error(`Unable to load asset ${relativePath}`);
+  } catch (error) {
+    throw error;
+  }
 };
