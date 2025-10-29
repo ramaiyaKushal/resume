@@ -62,37 +62,52 @@ const ensureLeadingSlash = (value) =>
 export const buildAssetCandidates = (relativePath) => {
   const path = normalizePath(relativePath);
   const publicUrl = process.env.PUBLIC_URL || '';
-  const candidates = new Set();
+  const candidates = [];
 
-  if (publicUrl) {
+  // Priority 1: Relative path with PUBLIC_URL (works with custom domains)
+  if (publicUrl && !/^https?:\/\//i.test(publicUrl)) {
     const trimmedPublicUrl = stripTrailingSlash(publicUrl);
-    candidates.add(`${trimmedPublicUrl}/${path}`);
-
-    if (typeof window !== 'undefined' && !/^https?:\/\//i.test(trimmedPublicUrl)) {
-      const prefix = ensureLeadingSlash(trimmedPublicUrl);
-      candidates.add(`${window.location.origin}${prefix}/${path}`);
-    }
+    const prefix = ensureLeadingSlash(trimmedPublicUrl);
+    candidates.push(`${prefix}/${path}`);
   }
 
+  // Priority 2: Relative to current location (works everywhere)
   if (typeof window !== 'undefined') {
     try {
-      candidates.add(new URL(path, window.location.href).toString());
+      const url = new URL(path, window.location.href);
+      // Make it relative if it's same origin
+      if (url.origin === window.location.origin) {
+        candidates.push(url.pathname);
+      } else {
+        candidates.push(url.toString());
+      }
     } catch (error) {
       // ignore malformed URL attempts
     }
 
-    candidates.add(`${window.location.origin}/${path}`);
-
+    // Try with first path segment (for /resume/ style paths)
     const firstSegment = window.location.pathname.split('/').filter(Boolean)[0];
     if (firstSegment) {
-      candidates.add(`${window.location.origin}/${firstSegment}/${path}`);
+      candidates.push(`/${firstSegment}/${path}`);
     }
   }
 
-  candidates.add(`/${path}`);
-  candidates.add(path);
+  // Priority 3: Simple relative paths
+  candidates.push(`/${path}`);
+  candidates.push(path);
 
-  const uniqueCandidates = Array.from(candidates).map((candidate) =>
+  // Priority 4: Full URLs with origin (last resort)
+  if (publicUrl && /^https?:\/\//i.test(publicUrl)) {
+    const trimmedPublicUrl = stripTrailingSlash(publicUrl);
+    candidates.push(`${trimmedPublicUrl}/${path}`);
+  }
+
+  if (typeof window !== 'undefined') {
+    candidates.push(`${window.location.origin}/${path}`);
+  }
+
+  // Remove duplicates and clean up double slashes
+  const uniqueCandidates = [...new Set(candidates)].map((candidate) =>
     candidate.replace(/([^:]\/)\/+/g, '$1')
   );
 
@@ -107,38 +122,55 @@ const loadContentJson = async () => {
     return contentCache;
   }
 
-  const candidates = buildAssetCandidates('content.json');
-  let lastError = null;
+  // Build path relative to PUBLIC_URL
+  const publicUrl = process.env.PUBLIC_URL || '';
+  const basePath = publicUrl ? `${publicUrl}/content.json` : '/content.json';
+  
+  // eslint-disable-next-line no-console
+  console.log('Attempting to load content.json from:', basePath);
 
-  for (const candidate of candidates) {
-    try {
-      const response = await fetch(candidate);
-      if (!response.ok) {
-        lastError = new Error(
-          `Request for ${candidate} failed with status ${response.status}`
-        );
-        continue;
-      }
-
-      contentCache = await response.json();
-      return contentCache;
-    } catch (error) {
-      lastError = error;
+  try {
+    const response = await fetch(basePath);
+    // eslint-disable-next-line no-console
+    console.log(`Response for ${basePath}:`, response.status, response.ok);
+    
+    if (!response.ok) {
+      throw new Error(
+        `Request for ${basePath} failed with status ${response.status}`
+      );
     }
-  }
 
-  throw lastError || new Error('Unable to load content.json');
+    contentCache = await response.json();
+    // eslint-disable-next-line no-console
+    console.log('Successfully loaded content.json with', Object.keys(contentCache).length, 'files');
+    return contentCache;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Error loading content.json:`, error);
+    throw error;
+  }
 };
 
 export const fetchMarkdownAsset = async (relativePath) => {
   try {
     // Try to load from content.json first
     const contentJson = await loadContentJson();
-    const normalizedPath = normalizePath(relativePath);
+    let normalizedPath = normalizePath(relativePath);
+    
+    // Remove 'content/' prefix if present, since content.json keys don't include it
+    normalizedPath = normalizedPath.replace(/^content\//, '');
+    
+    // eslint-disable-next-line no-console
+    console.log(`Looking for "${normalizedPath}" in content.json (original: "${relativePath}")`);
     
     if (contentJson[normalizedPath]) {
+      // eslint-disable-next-line no-console
+      console.log(`Found "${normalizedPath}" in content.json`);
       return { text: contentJson[normalizedPath], url: normalizedPath };
     }
+    
+    // eslint-disable-next-line no-console
+    console.warn(`Key "${normalizedPath}" not found in content.json. Available keys:`, Object.keys(contentJson).slice(0, 5));
 
     // Fallback to direct fetch if not in JSON (for development)
     const candidates = buildAssetCandidates(relativePath);
